@@ -50,7 +50,7 @@ p_tss <- p_tss + scale_fill_manual(values = c("#00AFBB", "#E7B800", "#FC4E07"))
 
 p_tss <- p_tss + theme(legend.position="bottom",legend.text=element_text(size=12),
                        legend.title = element_text(size=15,face="bold"))
-p_tss <- p_tss + labs(subtitle = "C)",face="bold")
+p_tss <- p_tss + labs(subtitle = "B)",face="bold")
 p_tss <- p_tss + theme(plot.subtitle = element_text(hjust = hjust1,vjust=vjust1,size=16,face="bold"))
 p_tss <- p_tss + theme(axis.text=element_text(size=14),
                        axis.title=element_text(size=14))
@@ -76,9 +76,9 @@ p_tss2 <- p_tss2 + ylab('Autarky\n[%]')
 p_tss2 <- p_tss2 + geom_abline(aes(intercept = 0,slope=1))
 p_tss2 <- p_tss2 + scale_fill_manual(values = c("#00AFBB", "#E7
                                                 B800", "#FC4E07")) 
-p_tss2 <- p_tss2 + theme(legend.position="bottom",legend.text=element_text(size=12),
+p_tss2 <- p_tss2 + theme(legend.position="top",legend.text=element_text(size=12),
                          legend.title = element_text(size=15,face="bold"))
-p_tss2 <- p_tss2 + labs(subtitle = "D)",face="bold")
+p_tss2 <- p_tss2 + labs(subtitle = "D)",face="bold",position='top')
 p_tss2 <- p_tss2 + geom_text(aes(x=10, label="Net producer", y=90), colour="black")
 p_tss2 <- p_tss2 + geom_text(aes(x=90, label="Net consumer", y=10), colour="black")
 
@@ -137,7 +137,7 @@ p_bill2 <- p_bill2 + theme(plot.margin = unit(c(0.5,1,0,0), "cm"))
 
 p_bill2 <- p_bill2 + theme(legend.position="bottom",legend.text=element_text(size=12),
                            legend.title = element_text(size=15,face="bold"))
-p_bill2 <- p_bill2 + labs(subtitle = "B)",face="bold")
+p_bill2 <- p_bill2 + labs(subtitle = "C)",face="bold")
 p_bill2 <- p_bill2+ theme(plot.subtitle = element_text(hjust = hjust1,vjust=vjust1,size=16,face="bold"))
                            
 p_bill2 <- p_bill2 + theme(axis.text=element_text(size=14),
@@ -148,14 +148,14 @@ p_bill2 <- p_bill2 + guides(colour=FALSE, fill=FALSE)
 sub_title1 <- paste("Household level")
 sub_title2 <- paste("Community level")
 #top=textGrob("Title", gp=gpar(fontsize=15,font=8)))
-a<-grid.arrange(p_bill,p_tss,nrow=2,top=textGrob(expression(bold("Household level")), gp=gpar(fontsize=18)))
-b<-grid.arrange(p_bill2,p_tss2,nrow=2,top=textGrob(expression(bold("Community level")), gp=gpar(fontsize=18)))
+a<-grid.arrange(p_bill,p_tss,ncol=2,top=textGrob(expression(bold("Household level")), gp=gpar(fontsize=18)))
+b<-grid.arrange(p_bill2,p_tss2,ncol=2,top=textGrob(expression(bold("Community level")), gp=gpar(fontsize=18)))
 
 
-grid.arrange(a,b, ncol=2)
+grid.arrange(a,b, nrow=2)
 
 
-ggsave('../Img/P3.pdf',plot=grid.arrange(a,b,  ncol=2),width=15, height=8.5,
+ggsave('../Img/P3.pdf',plot=grid.arrange(a,b, nrow=2),width=15, height=8.5,
        encoding = "ISOLatin9.enc")
 
 
@@ -185,7 +185,7 @@ p_peak <- p_peak + ylim(0,NA)
 p_peak <- p_peak + labs(subtitle = "B) Peak-to-peak seasonal effect",face="bold")
 p_peak <- p_peak + theme(plot.subtitle = element_text(hjust = 0.5,size=16,face="bold"))
 
-p_peak <- p_peak + theme(legend.position="left",legend.text=element_text(size=14),
+p_peak <- p_peak + theme(legend.position="right",legend.text=element_text(size=14),
                          legend.title = element_text(size=16,face="bold"))
 p_peak <- p_peak + theme(axis.text=element_text(size=14),
                          axis.title=element_text(size=14,face="bold"))
@@ -261,7 +261,7 @@ p_peak3 <- p_peak3 + theme(plot.margin = unit(c(0.5,1,0,0), "cm"))
 
 p_peak3 <- p_peak3 + theme(legend.position="bottom",legend.text=element_text(size=14),
                            legend.title = element_text(size=16,face="bold"))
-p_peak3 <- p_peak3 + labs(subtitle = "C) Maximum import peak",face="bold")
+p_peak3 <- p_peak3 + labs(subtitle = "D) Maximum import peak",face="bold")
 p_peak3 <- p_peak3 + theme(plot.subtitle = element_text(hjust = 0.5,size=16,face="bold"))
 p_peak3 <- p_peak3 + theme(axis.text=element_text(size=14),
                            axis.title=element_text(size=14,face="bold"))
@@ -286,48 +286,19 @@ p_peak4 <- p_peak4 + theme(plot.margin = unit(c(0.5,1,0,0), "cm"))
 
 p_peak4 <- p_peak4 + theme(legend.position="bottom",legend.text=element_text(size=14),
                            legend.title = element_text(size=16,face="bold"))
-p_peak4 <- p_peak4 + labs(subtitle = "D) Maximum export peak",face="bold")
+p_peak4 <- p_peak4 + labs(subtitle = "C) Maximum export peak",face="bold")
 p_peak4 <- p_peak4 + theme(plot.subtitle = element_text(hjust = 0.5,size=16,face="bold"))
 p_peak4 <- p_peak4 + theme(axis.text=element_text(size=14),
                            axis.title=element_text(size=14,face="bold"))
 p_peak4 <- p_peak4 + guides(colour=FALSE, fill=FALSE)
 #p_peak4
 lay <- rbind(c(1,1,1,1),c(2,2,3,4))
-grid.arrange(p_peak2,p_peak4, p_peak,p_peak3, layout_matrix = lay)
-ggsave('../Img/Power.pdf',plot=grid.arrange(p_peak2,p_peak,p_peak3,p_peak4, layout_matrix = lay),
+grid.arrange(p_peak2, p_peak,p_peak4,p_peak3, layout_matrix = lay)
+ggsave('../Img/Power.pdf',plot=grid.arrange(p_peak2, p_peak,p_peak4,p_peak3, layout_matrix = lay),
        width=15, height=8.5,
        encoding = "ISOLatin9.enc")
 
-#######################tests######
-median(subset(df,df$Comm=='P2P')$Demand_peak)-median(subset(df,df$Comm=='SC')$Demand_peak)
-median(subset(df,df$Comm=='P2P')$Inj_peak)-median(subset(df,df$Comm=='SC')$Inj_peak)
 
-colnames(df)
-df$total_gen#MWh
-df$Total_load#MW
-median(df$total_gen)#MWh
-df$Total_load/4#MWh
-1500*50*6/1000
-1-df$EPARI
-df$ADMD
-median(subset(df,df$Comm=='P2P')$ADME)-median(subset(df,df$Comm=='SC')$ADME)#max_exp/number of hh
-median(subset(df,df$Comm=='P2P')$ADMD)-median(subset(df,df$Comm=='SC')$ADMD)#max_imp/number of hh
-median(1-(subset(df,df$Comm=='P2P')$EPARI)/median(subset(df,df$Comm=='SC')$EPARI))#max_exp/number of hh
-
-df2_fall<-subset(df2,df2$season=='Fall')
-df2_spring<-subset(df2,df2$season=='Spring')
-df2_winter<-subset(df2,df2$season=='Winter')
-df2_summer<-subset(df2,df2$season=='Summer')
-
-shapiro.test(sample(df2_fall$Power,5000))
-shapiro.test(sample(df2_spring$Power,5000))
-shapiro.test(sample(df2_winter$Power,5000))
-shapiro.test(sample(df2_summer$Power,5000))
-
-pairwise.wilcox.test(df2_fall$Power,df2_fall$Comm,paired=FALSE)
-pairwise.wilcox.test(df2_spring$Power,df2_spring$Comm,paired=FALSE)
-pairwise.wilcox.test(df2_winter$Power,df2_winter$Comm,paired=FALSE)
-pairwise.wilcox.test(df2_summer$Power,df2_summer$Comm,paired=FALSE)
 
 ###############################FIG 3A trading patterns hh######################################
 
@@ -356,6 +327,9 @@ shapiro.test(h$X13.0)
 ###############################FIG 3B trading patterns hh######################################
 
 d<-read.table('optimal_trading_individual.csv',sep=',',header=TRUE,stringsAsFactors = FALSE)
+colnames(df)
+
+
 
 d<-subset(d,(d$Comm=='P2P')&(d$type=='PV_batt'))
 d$trading<-ordered(d$trading, levels =  c("Rarely", "Moderate", "Intensive"))
@@ -364,14 +338,59 @@ d.m <- melt(select(d,-X), id.var = c("trading","type", "Comm"))
 head(d.m)
 unique(d.m$variable)
 
+unique(d.m$type)
 #dummy1 <- data.frame("variable" = c("SCR_hh","SSR_hh","bill_hh"), Z = c(scr_hh_sc,ssr_hh_sc, bill_hh_sc))
+tapply(subset(d.m,d.m$variable=='SCR')$value, subset(d.m,d.m$variable=='SCR')$trading, summary)
+tapply(subset(d.m,d.m$variable=='SSR')$value, subset(d.m,d.m$variable=='SSR')$trading, summary)
+tapply(subset(d.m,d.m$variable=='bill')$value, subset(d.m,d.m$variable=='bill')$trading, summary)
+
+median(subset(df,(df$Comm=='SC')&(df$index=='PV_batt'))$bill_hh)
+tapply(subset(df,df$Comm=='SC')$SCR_hh, subset(df,df$Comm=='SC')$index, median)
+tapply(subset(df,df$Comm=='SC')$SSR_hh, subset(df,df$Comm=='SC')$index, median)
+
+subset(d.m,d.m$variable=='bill')
+
+dummy2 <- data.frame(trading = c("Rarely","Moderate","Intensive"), 
+                     Z = c(median(subset(d.m,(d.m$variable=='bill')&(d.m$trading=='Rarely'))$value),
+                           median(subset(d.m,(d.m$variable=='bill')&(d.m$trading=='Moderate'))$value),
+                           median(subset(d.m,(d.m$variable=='bill')&(d.m$trading=='Intensive'))$value)))
+
+dummy3 <- data.frame(trading = c("Rarely","Moderate","Intensive"), 
+                     Z = c(mean(subset(d.m,(d.m$variable=='bill')&(d.m$trading=='Rarely'))$value),
+                           mean(subset(d.m,(d.m$variable=='bill')&(d.m$trading=='Moderate'))$value),
+                           mean(subset(d.m,(d.m$variable=='bill')&(d.m$trading=='Intensive'))$value)))
+
+
+b_hist <- ggplot(data=subset(d.m,d.m$variable=='bill'), aes(value))
+b_hist <- b_hist + geom_histogram() 
+b_hist <- b_hist + geom_vline(data=dummy2,aes(xintercept = Z),
+                              colour="red",linetype="longdash")
+
+b_hist <- b_hist + geom_vline(data=dummy3,aes(xintercept = Z),
+                              colour="blue",linetype="longdash")
+b_hist <- b_hist + facet_wrap(~trading, scales="free_y",ncol=1)
+
+                              #xintercept=median(subset(d.m,d.m$variable=='SCR')$value),colour='red')
+b_hist <- b_hist + theme_bw()
+b_hist <- b_hist +  xlab('Annual bill [€]')
+
+
+b_hist
+
+tapply(subset(df,df$Comm=='SC')$bill_hh, subset(df,df$Comm=='SC')$index, summary)
+colnames(df)
+dummy2 <- data.frame(variable = c("SCR","SSR","bill"), 
+                     Z = c(median(subset(df,(df$Comm=='SC')&(df$index=='PV_batt'))$SCR_hh),
+                           median(subset(df,(df$Comm=='SC')&(df$index=='PV_batt'))$SSR_hh),
+                           median(subset(df,(df$Comm=='SC')&(df$index=='PV_batt'))$bill_hh)))
 
 p_hh <- ggboxplot(d.m, x= "trading",y="value",fill="trading")
-#p_hh <- p_hh + geom_hline(data=dummy1, aes(yintercept = Z),colour="red",linetype="longdash")
+
 p_hh <- p_hh + facet_wrap(~variable, scales="free_y",ncol=1,strip.position = "left", 
                           labeller=as_labeller(c("SCR"="SC [%]","SSR"="Autarky [%]","bill"="Bill [\u20AC]")))
 #p_hh <- p_hh + stat_compare_means(label.x.npc=0.4,label.y.npc = 0.05)#label.x= -Inf, label.y = Inf, hjust = , vjust = 1)
-
+p_hh <- p_hh + geom_hline(data=dummy2,aes(yintercept = Z),
+                          colour="red",linetype="longdash")
 p_hh <- p_hh + scale_fill_discrete(name =  'Dark2')
 p_hh <- p_hh + labs(shape="Type of prosumer:",fill="Type of prosumer:" ,colour="Community:")
 
@@ -392,9 +411,17 @@ d2<-read.table('optimal_trading_community.csv',sep=',',header=TRUE,stringsAsFact
 d2$trading<-ordered(d2$trading, levels =  c("Rarely", "Moderate", "Intensive"))
 d2.m <- melt(select(d2,-X), id.var = c("trading","Comm"))
 unique(d2.m$variable)
+tapply(subset(d2.m,d2.m$variable=='SCR_comm')$value, subset(d2.m,d2.m$variable=='SCR_comm')$trading, mean)
+tapply(subset(d2.m,d2.m$variable=='SSR_comm')$value, subset(d2.m,d2.m$variable=='SSR_comm')$trading, mean)
+tapply(subset(d2.m,d2.m$variable=='Bill_comm')$value, subset(d2.m,d2.m$variable=='Bill_comm')$trading, mean)
+
+dummy2 <- data.frame(variable = c("SCR_comm","SSR_comm","Bill_comm"), 
+                     Z = c(median(subset(df,(df$Comm=='SC'))$SCR),
+                           median(subset(df,(df$Comm=='SC'))$SSR),
+                           median(subset(df,(df$Comm=='SC'))$bill)))
 
 p_comm <- ggboxplot(d2.m, x= "trading",y="value",fill="trading")
-#p_comm <- p_comm + geom_hline(data=dummy2, aes(yintercept = Z),colour="red",linetype="longdash")
+p_comm <- p_comm + geom_hline(data=dummy2, aes(yintercept = Z),colour="red",linetype="longdash")
 p_comm <- p_comm + facet_wrap(~variable, scales="free_y", ncol= 1,strip.position = "left", 
                               labeller=as_labeller(c("SCR_comm"="SC [%]","SSR_comm"="Autarky [%]","Bill_comm"="Bill [k\u20AC]")))
 #p_comm <- p_comm + stat_compare_means(label.x.npc=0.4,label.y.npc = 0.05)
@@ -421,7 +448,7 @@ lay2 <- rbind(c(1,1,1,1),
               c(2,2,3,3))
 
 grid.arrange(h_hist,p_hh,p_comm, layout_matrix = lay2)
-
+(174-154)/174
 ggsave('../Img/P2P_strategy_abs.pdf',grid.arrange(h_hist,p_hh,p_comm, layout_matrix = lay2),width=15, height=8.5,device=cairo_pdf)
 
 
@@ -684,18 +711,157 @@ ggsave('../Img/sensitivity_ind.pdf',plot=grid.arrange(p_bill_ind,p_scr_ind,p_ss_
 
 ggsave('../Img/sensitivity_com.pdf',plot=grid.arrange(p_bill_com,p_scr_com,p_ss_com,nrow=3, ncol=1),width=15, height=8.5,
        encoding = "ISOLatin9.enc")
+#######################tests###################
+df<-read.table('final_dataset.csv',sep=',',header=TRUE,stringsAsFactors = FALSE)
+unique(df$index)
+# Fig 1 A
+shapiro.test(subset(df,df$Comm=='SC' & df$index=='PV_batt')$bill_hh)
+shapiro.test(subset(df,df$Comm=='P2P' & df$index=='PV_batt')$bill_hh)
+
+wilcox.test(subset(df,df$Comm=='SC' & df$index=='PV_batt')$bill_hh,
+            subset(df,df$Comm=='P2P' & df$index=='PV_batt')$bill_hh,
+            paired=FALSE)
+
+shapiro.test(subset(df,df$Comm=='SC' & df$index=='PV')$bill_hh)
+shapiro.test(subset(df,df$Comm=='P2P' & df$index=='PV')$bill_hh)
+
+wilcox.test(subset(df,df$Comm=='SC' & df$index=='PV')$bill_hh,
+            subset(df,df$Comm=='P2P' & df$index=='PV')$bill_hh,
+            paired=FALSE)
+
+shapiro.test(subset(df,df$Comm=='SC' & df$index=='No')$bill_hh)
+shapiro.test(subset(df,df$Comm=='P2P' & df$index=='No')$bill_hh)
+
+wilcox.test(subset(df,df$Comm=='SC' & df$index=='No')$bill_hh,
+                     subset(df,df$Comm=='P2P' & df$index=='No')$bill_hh,
+                     paired=FALSE)
+# Fig 1 C
+shapiro.test(subset(df,df$Comm=='SC')$bill)
+shapiro.test(subset(df,df$Comm=='P2P')$bill)
+
+wilcox.test(subset(df,df$Comm=='SC')$bill,
+            subset(df,df$Comm=='P2P')$bill,
+            paired=FALSE)
 
 
+df2<-read.table('final_peak.csv',sep=',',header=TRUE,stringsAsFactors = FALSE)
+df3<-read.table('final_week.csv',sep=',',header=TRUE,stringsAsFactors = FALSE)
+# Fig 2 B
+shapiro.test(sample(subset(df2,df2$Comm=='SC'& df2$season=='Winter')$Power,5000))
+shapiro.test(sample(subset(df2,df2$Comm=='SC'& df2$season=='Fall')$Power,5000))
+shapiro.test(sample(subset(df2,df2$Comm=='SC'& df2$season=='Summer')$Power,5000))
+shapiro.test(sample(subset(df2,df2$Comm=='SC'& df2$season=='Spring')$Power,5000))
+
+shapiro.test(sample(subset(df2,df2$Comm=='P2P'& df2$season=='Winter')$Power,5000))
+shapiro.test(sample(subset(df2,df2$Comm=='P2P'& df2$season=='Fall')$Power,5000))
+shapiro.test(sample(subset(df2,df2$Comm=='P2P'& df2$season=='Summer')$Power,5000))
+shapiro.test(sample(subset(df2,df2$Comm=='P2P'& df2$season=='Spring')$Power,5000))
+
+wilcox.test(subset(df2,df2$Comm=='SC' & df2$season=='Fall')$Power,
+            subset(df2,df2$Comm=='P2P' & df2$season=='Fall')$Power,
+            paired=FALSE)
+
+wilcox.test(subset(df2,df2$Comm=='SC' & df2$season=='Winter')$Power,
+            subset(df2,df2$Comm=='P2P' & df2$season=='Winter')$Power,
+            paired=FALSE)
+
+wilcox.test(subset(df2,df2$Comm=='SC' & df2$season=='Summer')$Power,
+            subset(df2,df2$Comm=='P2P' & df2$season=='Summer')$Power,
+            paired=FALSE)
+
+wilcox.test(subset(df2,df2$Comm=='SC' & df2$season=='Spring')$Power,
+            subset(df2,df2$Comm=='P2P' & df2$season=='Spring')$Power,
+            paired=FALSE)
+# Fig 2 C
+shapiro.test(subset(df,df$Comm=='SC')$Demand_peak)
+shapiro.test(subset(df,df$Comm=='P2P')$Demand_peak)
+
+wilcox.test(subset(df,df$Comm=='SC')$Demand_peak,
+            subset(df,df$Comm=='P2P')$Demand_peak,
+            paired=FALSE)
+# Fig 2 D
+shapiro.test(subset(df,df$Comm=='SC')$Inj_peak)
+shapiro.test(subset(df,df$Comm=='P2P')$Inj_peak)
+
+wilcox.test(subset(df,df$Comm=='SC')$Inj_peak,
+            subset(df,df$Comm=='P2P')$Inj_peak,
+            paired=FALSE)
 
 
+d<-read.table('optimal_trading_individual.csv',sep=',',header=TRUE,stringsAsFactors = FALSE)
+
+d<-subset(d,(d$Comm=='P2P')&(d$type=='PV_batt'))
+d$trading<-ordered(d$trading, levels =  c("Rarely", "Moderate", "Intensive"))
+d.m <- melt(select(d,-X), id.var = c("trading","type", "Comm"))
+
+# fig 3 B
+shapiro.test(subset(d.m,d.m$variable=='SCR' & d.m$trading=='Rarely')$value)
+shapiro.test(subset(d.m,d.m$variable=='SCR' & d.m$trading=='Moderate')$value)
+shapiro.test(subset(d.m,d.m$variable=='SCR' & d.m$trading=='Intensive')$value)
+
+kruskal.test(subset(d.m,d.m$variable=='SCR')$value~
+               subset(d.m,d.m$variable=='SCR')$trading)
 
 
+shapiro.test(subset(d.m,d.m$variable=='SSR' & d.m$trading=='Rarely')$value)
+shapiro.test(subset(d.m,d.m$variable=='SSR' & d.m$trading=='Moderate')$value)
+shapiro.test(subset(d.m,d.m$variable=='SSR' & d.m$trading=='Intensive')$value)
+
+kruskal.test(subset(d.m,d.m$variable=='SSR')$value~
+               subset(d.m,d.m$variable=='SSR')$trading)
+
+shapiro.test(subset(d.m,d.m$variable=='bill' & d.m$trading=='Rarely')$value)
+shapiro.test(subset(d.m,d.m$variable=='bill' & d.m$trading=='Moderate')$value)
+shapiro.test(subset(d.m,d.m$variable=='bill' & d.m$trading=='Intensive')$value)
+
+kruskal.test(subset(d.m,d.m$variable=='bill')$value~
+               subset(d.m,d.m$variable=='bill')$trading)
+
+d2<-read.table('optimal_trading_community.csv',sep=',',header=TRUE,stringsAsFactors = TRUE)
+d2$trading<-ordered(d2$trading, levels =  c("Rarely", "Moderate", "Intensive"))
+d2.m <- melt(select(d2,-X), id.var = c("trading","Comm"))
+
+#fig 3 C
+
+shapiro.test(sample(subset(d2.m,d2.m$variable=='SCR_comm' &
+                             d2.m$trading=='Rarely')$value,5000))
+shapiro.test(sample(subset(d2.m,d2.m$variable=='SCR_comm' &
+                             d2.m$trading=='Moderate')$value,5000))
+shapiro.test(sample(subset(d2.m,d2.m$variable=='SCR_comm' &
+                             d2.m$trading=='Intensive')$value,5000))
 
 
+kruskal.test(subset(d2.m,d2.m$variable=='SCR_comm')$value~
+               subset(d2.m,d2.m$variable=='SCR_comm')$trading)
 
 
+shapiro.test(sample(subset(d2.m,d2.m$variable=='SSR_comm' & 
+                      d2.m$trading=='Rarely')$value,5000))
+shapiro.test(sample(subset(d2.m,d2.m$variable=='SSR_comm' & 
+                      d2.m$trading=='Moderate')$value,5000))
+shapiro.test(sample(subset(d2.m,d2.m$variable=='SSR_comm' & 
+                      d2.m$trading=='Intensive')$value,5000))
+
+kruskal.test(subset(d2.m,d2.m$variable=='SSR_comm')$value~
+               subset(d2.m,d2.m$variable=='SSR_comm')$trading)
+
+shapiro.test(sample(subset(d2.m,d2.m$variable=='Bill_comm' & 
+                      d2.m$trading=='Rarely')$value,5000))
+shapiro.test(sample(subset(d2.m,d2.m$variable=='Bill_comm' & 
+                      d2.m$trading=='Moderate')$value,5000))
+shapiro.test(sample(subset(d2.m,d2.m$variable=='Bill_comm' & 
+                      d2.m$trading=='Intensive')$value,5000))
+
+kruskal.test(subset(d2.m,d2.m$variable=='Bill_comm')$value~
+               subset(d2.m,d2.m$variable=='Bill_comm')$trading)
 
 
+h<-read.table('hist_selling.csv',sep=',',header=TRUE,stringsAsFactors = FALSE)
+h$group<-ifelse(h$X13.0<mean(h$X13.0)-sd(h$X13.0),'Rarely',ifelse(h$X13.0>mean(h$X13.0)+sd(h$X13.0),'Intensively','Moderately'))
+h$group<-as.factor(ordered(h$group, levels =  c("Rarely", "Moderately", "Intensively")))
 
+summary(h$X13.0)
+sd(h$X13.0)
 
-
+summary(subset(df,df$Comm=='P2P')$PI)
+sd(subset(df,df$Comm=='P2P')$PI)
