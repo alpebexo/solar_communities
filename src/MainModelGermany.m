@@ -27,8 +27,8 @@ LoadHouse=load('LoadHouse.mat');
 LoadHouse=LoadHouse.MatlabD;
 
 % Load solar production dataset, from Z. Norwood, E. Nyholm, T. Otanicar, 
-% and F. Johnsson, “A Geospatial Comparison of Distributed Solar Heat and 
-% Power in Europe and the US,�? PLoS One,  NOT INCLUDED
+% and F. Johnsson, â€œA Geospatial Comparison of Distributed Solar Heat and 
+% Power in Europe and the US,â€? PLoS One,  NOT INCLUDED
 %kk=load('PV_factor_XYcoordinatesDE.mat');
 %PV_factor = kk.PV_factor;
 %PV_factor = PV_factor(:,:,1:8760);
